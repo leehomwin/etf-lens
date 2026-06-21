@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ETF Lens｜台灣 ETF 分析</title>
+  <meta name="description" content="台灣 ETF 持股、產業配置、報酬與風險分析儀表板">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="ETF Lens 首頁"><span class="brand-mark">E</span><span>ETF <b>Lens</b></span></a>
+      <div class="asof"><span class="live-dot"></span><span id="asOf">展示資料版本</span></div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <p class="eyebrow">TAIWAN ETF ANALYTICS</p>
+        <h1>把 ETF 看得<br><em>更清楚一點。</em></h1>
+        <p class="hero-copy">從成分、產業到風險與報酬，一頁掌握值得比較的關鍵數字。</p>
+      </div>
+      <div class="search-wrap">
+        <label for="etfInput">輸入 ETF 代號</label>
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.15A7.5 7.5 0 1 1 4 11.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <input id="etfInput" autocomplete="off" maxlength="6" placeholder="例如 0050" value="0050">
+          <button id="analyzeBtn">開始分析 <span>→</span></button>
+        </div>
+        <div id="suggestions" class="suggestions" hidden></div>
+        <p class="supported">支援 12 檔 ETF　<span id="supportedList"></span></p>
+      </div>
+    </section>
+
+    <section id="dashboard" class="dashboard">
+      <div class="fund-head">
+        <div>
+          <div class="code-row"><span id="fundCode" class="code-pill">0050</span><span id="fundType" class="type-pill">市值型</span></div>
+          <h2 id="fundName">元大台灣50</h2>
+          <p id="fundDesc">追蹤台灣市值最大的 50 家上市公司</p>
+        </div>
+        <div class="price-block"><span>參考淨值</span><strong id="nav">NT$ 51.85</strong><small id="dayChange" class="positive">+0.72% 今日</small></div>
+      </div>
+
+      <div class="metrics" id="metrics"></div>
+
+      <div class="grid-main">
+        <article class="card chart-card">
+          <div class="card-head">
+            <div><p class="kicker">GROWTH OF 100</p><h3>績效走勢</h3></div>
+            <div class="period-tabs" role="group" aria-label="圖表期間">
+              <button data-period="1" class="active">1年</button><button data-period="3">3年</button><button data-period="5">5年</button>
+            </div>
+          </div>
+          <div class="chart-meta"><strong id="chartValue">$100</strong><span id="chartDelta">—</span></div>
+          <div class="canvas-wrap"><canvas id="performanceChart"></canvas><div id="tooltip" class="tooltip"></div></div>
+          <div class="chart-legend"><span><i class="legend-fund"></i><b id="legendCode">0050</b></span><span><i class="legend-market"></i>台灣加權指數</span></div>
+        </article>
+
+        <article class="card sector-card">
+          <div class="card-head"><div><p class="kicker">ALLOCATION</p><h3>產業配置</h3></div><span class="mini-note">前五大產業</span></div>
+          <div class="donut-area"><div class="donut" id="donut"><div><strong id="topSectorPct">—</strong><span>最大產業</span></div></div><div id="sectorLegend" class="sector-legend"></div></div>
+        </article>
+      </div>
+
+      <article class="card holdings-card">
+        <div class="card-head"><div><p class="kicker">PORTFOLIO</p><h3>前十大持股</h3></div><span class="mini-note">權重合計 <b id="top10Total">—</b></span></div>
+        <div class="table-wrap"><table><thead><tr><th>排名</th><th>公司 / 標的</th><th>代號</th><th>產業</th><th>權重</th></tr></thead><tbody id="holdingsBody"></tbody></table></div>
+      </article>
+      <p class="disclaimer">資料為產品功能展示用，配置與價格可能與即時市場不同；報酬率含價格變動、不含交易成本。Sharpe Ratio 以年化波動率及 1.5% 無風險利率估算。本工具不構成投資建議。</p>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
