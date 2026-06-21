@@ -20,4 +20,4 @@
 
 ## GitHub Pages
 
-推送至 `main` 分支後，GitHub Actions 會自動發布網站。儲存庫的 **Settings → Pages → Source** 請設為 **GitHub Actions**。
+網站由 GitHub Actions 自動發布至：https://leehomwin.github.io/etf-lens/
